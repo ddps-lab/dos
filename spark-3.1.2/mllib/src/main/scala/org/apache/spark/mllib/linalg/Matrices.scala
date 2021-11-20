@@ -32,6 +32,16 @@ import org.apache.spark.sql.catalyst.expressions.{GenericInternalRow, UnsafeArra
 import org.apache.spark.sql.types._
 import org.apache.spark.unsafe.array.ByteArrayMethods
 
+import org.apache.http.impl.client.HttpClients
+import org.apache.http.client.methods.HttpPost
+import org.apache.http.entity.StringEntity
+import org.apache.http.client.methods.CloseableHttpResponse
+import org.apache.http.util.EntityUtils
+import org.json4s.jackson.JsonMethods._
+import org.json4s.JsonDSL._
+import breeze.linalg.CSCMatrix
+
+
 /**
  * Trait for a local matrix.
  */
@@ -107,6 +117,85 @@ sealed trait Matrix extends Serializable {
     BLAS.gemm(1.0, this, y, 0.0, C)
     C
   }
+
+
+  @Since("1.2.0")
+  def multiply(y: SparseMatrix): Matrix = {
+
+      // Left Matrix Info
+      val lr : Long = numRows
+      val lc : Long = numCols
+      val lnnz : Double = numNonzeros
+      val ld : Double = lnnz/(lr*lc)
+      val l_colPtrs = this.asML.toSparse.colPtrs
+      val l_rowIndices = this.asML.toSparse.rowIndices
+      val l_values = this.asML.toSparse.values
+      
+      // Right Matrix Info
+      val rr : Long = y.numRows	
+      val rc : Long = y.numCols
+      val rnnz : Double = y.numNonzeros
+      val rd : Double = rnnz/(lc*rc)
+      val r_colPtrs = y.colPtrs
+      val r_rowIndices = y.rowIndices
+      val r_values = y.values
+      
+      require(lc == rr, s"The columns of leftmatrix don't match the rows of rightmatrix. A: $lc, B: $rr")
+      
+      // 최적의 곱셈 방법을 반환 받기 위해, 양쪽 행렬의 정보를 담아 Post Request
+      val api_url = ""
+      
+      val matrix_info : Map[String,org.json4s.JsonAST.JValue] = Map("lr"->lr, "lc"->lc, "rc"->rc, "ld"->ld, "rd"->rd, "lnnz"->lnnz, "rnnz"->rnnz)
+      val matrix_info_json = pretty(render(matrix_info))
+      
+      val client = HttpClients.createDefault()
+      
+      val post : HttpPost = new HttpPost(api_url)
+      post.addHeader("Content-Type", "application/json")
+      post.setEntity(new StringEntity(matrix_info_json))
+      
+      val response : CloseableHttpResponse = client.execute(post)
+      val entity = response.getEntity
+      val response_str = EntityUtils.toString(entity,"UTF-8")
+      
+      val Pattern = "[a-zA-Z_]+".r
+      val matches = Pattern.findAllIn(response_str.split(":")(2))
+      val opti_method = matches.toList(0)
+
+      // If sm*dm is faster than sm*sm
+      if (opti_method == "smdm") {
+          // 결과로 반환할 DenseMatrix 생성
+          val C: DenseMatrix = DenseMatrix.zeros(lr.toInt, rc.toInt)
+          // spark sm * dm 곱셈을 통해 DenseMatrix 반환
+          BLAS.gemm(1.0, this, y.toDense, 0.0, C)
+          // 결과 sparse DenseMatrix를 spark Matrix interface로 변환
+          val result_sp_smdm : Matrix = C
+          // 결과 spark Matrix interface 반환
+          result_sp_smdm
+      } 
+      
+                  // If sm*sm is faster than sm*dm
+      else {
+          // 왼쪽 spark SparseMatrix를 breeze SparseMatrix로 변환
+          val bz_l_sm = new CSCMatrix[Double](l_values, lr.toInt, lc.toInt, l_colPtrs, l_rowIndices)
+          // 오른쪽 spark SparseMatrix를 breeze SparseMatrix로 변환
+          val bz_r_sm = new CSCMatrix[Double](r_values, lc.toInt, rc.toInt, r_colPtrs, r_rowIndices)
+          // breeze sm * sm 진행
+          val bz_smsm = bz_l_sm * bz_r_sm
+          // 결과 breeze SparseMatrix를 spark Matrix interface로 변환
+          val result_sp_smsm : Matrix = new SparseMatrix(bz_smsm.rows, bz_smsm.cols, bz_smsm.colPtrs, bz_smsm.rowIndices, bz_smsm.data)
+          // 결과 spark Matrix interface 반환
+          result_sp_smsm
+      }
+  }
+
+
+
+
+
+
+
+
 
   /**
    * Convenience method for `Matrix`-`DenseVector` multiplication. For binary compatibility.

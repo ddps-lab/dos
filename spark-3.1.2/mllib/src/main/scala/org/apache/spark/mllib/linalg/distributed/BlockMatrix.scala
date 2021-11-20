@@ -529,7 +529,7 @@ class BlockMatrix @Since("1.3.0") (
           b.filter(_._1 == leftColIndex).map { case (rightRowIndex, rightColIndex, rightBlock) =>
             val C = rightBlock match {
               case dense: DenseMatrix => leftBlock.multiply(dense)
-              case sparse: SparseMatrix => leftBlock.multiply(sparse.toDense)
+              case sparse: SparseMatrix => leftBlock.multiply(sparse)
               case _ =>
                 throw new SparkException(s"Unrecognized matrix type ${rightBlock.getClass}.")
             }
