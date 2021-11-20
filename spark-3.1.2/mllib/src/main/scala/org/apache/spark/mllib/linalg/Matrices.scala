@@ -118,7 +118,6 @@ sealed trait Matrix extends Serializable {
     C
   }
 
-
   @Since("1.2.0")
   def multiply(y: SparseMatrix): Matrix = {
 
@@ -142,60 +141,55 @@ sealed trait Matrix extends Serializable {
       
       require(lc == rr, s"The columns of leftmatrix don't match the rows of rightmatrix. A: $lc, B: $rr")
       
-      // 최적의 곱셈 방법을 반환 받기 위해, 양쪽 행렬의 정보를 담아 Post Request
+      // Define api url of microservce
       val api_url = ""
       
+      // Define matrix info
       val matrix_info : Map[String,org.json4s.JsonAST.JValue] = Map("lr"->lr, "lc"->lc, "rc"->rc, "ld"->ld, "rd"->rd, "lnnz"->lnnz, "rnnz"->rnnz)
       val matrix_info_json = pretty(render(matrix_info))
       
+      // Define client
       val client = HttpClients.createDefault()
       
+      // Define post
       val post : HttpPost = new HttpPost(api_url)
       post.addHeader("Content-Type", "application/json")
       post.setEntity(new StringEntity(matrix_info_json))
       
+      // Invoke microservice with matrix info
       val response : CloseableHttpResponse = client.execute(post)
       val entity = response.getEntity
       val response_str = EntityUtils.toString(entity,"UTF-8")
       
-      val Pattern = "[a-zA-Z_]+".r
-      val matches = Pattern.findAllIn(response_str.split(":")(2))
-      val opti_method = matches.toList(0)
+      // Response preprocessing
+      val pattern = "[a-zA-Z_]+".r
+      val matches = pattern.findAllIn(response_str.split(":")(2))
+      val optim_method = matches.toList(0)
 
       // If sm*dm is faster than sm*sm
-      if (opti_method == "smdm") {
-          // 결과로 반환할 DenseMatrix 생성
+      if (optim_method == "smdm") {
+          // Create DenseMatrix to return as result
           val C: DenseMatrix = DenseMatrix.zeros(lr.toInt, rc.toInt)
-          // spark sm * dm 곱셈을 통해 DenseMatrix 반환
+          // Returns a DenseMatrix using sm*dm
           BLAS.gemm(1.0, this, y.toDense, 0.0, C)
-          // 결과 sparse DenseMatrix를 spark Matrix interface로 변환
-          val result_sp_smdm : Matrix = C
-          // 결과 spark Matrix interface 반환
-          result_sp_smdm
+          // Convert the resulting DenseMatrix to a spark Matrix interface
+          val result_matrix : Matrix = C
+          result_matrix
       } 
       
-                  // If sm*sm is faster than sm*dm
+      // If sm*sm is faster than sm*dm
       else {
-          // 왼쪽 spark SparseMatrix를 breeze SparseMatrix로 변환
-          val bz_l_sm = new CSCMatrix[Double](l_values, lr.toInt, lc.toInt, l_colPtrs, l_rowIndices)
-          // 오른쪽 spark SparseMatrix를 breeze SparseMatrix로 변환
-          val bz_r_sm = new CSCMatrix[Double](r_values, lc.toInt, rc.toInt, r_colPtrs, r_rowIndices)
+          // Convert left spark SparseMatrix to breeze SparseMatrix
+          val l_sm = new CSCMatrix[Double](l_values, lr.toInt, lc.toInt, l_colPtrs, l_rowIndices)
+          // Convert right spark SparseMatrix to breeze SparseMatrix
+          val r_sm = new CSCMatrix[Double](r_values, lc.toInt, rc.toInt, r_colPtrs, r_rowIndices)
           // breeze sm * sm 진행
-          val bz_smsm = bz_l_sm * bz_r_sm
-          // 결과 breeze SparseMatrix를 spark Matrix interface로 변환
-          val result_sp_smsm : Matrix = new SparseMatrix(bz_smsm.rows, bz_smsm.cols, bz_smsm.colPtrs, bz_smsm.rowIndices, bz_smsm.data)
-          // 결과 spark Matrix interface 반환
-          result_sp_smsm
+          val smsm = l_sm * r_sm
+          // Convert the resulting breeze SparseMatrix to spark Matrix interface
+          val result_matrix : Matrix = new SparseMatrix(smsm.rows, smsm.cols, smsm.colPtrs, smsm.rowIndices, smsm.data)
+          result_matrix
       }
   }
-
-
-
-
-
-
-
-
 
   /**
    * Convenience method for `Matrix`-`DenseVector` multiplication. For binary compatibility.
