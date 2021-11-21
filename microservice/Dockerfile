@@ -5,7 +5,7 @@ FROM amazon/aws-lambda-python:3.8
 RUN /var/lang/bin/python3.8 -m pip install --upgrade pip
 
 # Install git 
-RUN apt-get install git -y
+RUN yum install git -y
 
 # Create a local repository to clone
 RUN git init dos
