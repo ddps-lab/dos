@@ -17,15 +17,15 @@ WORKDIR dos
 RUN git config core.sparseCheckout true
 
 # Set remote repository
-git remote add -f origin https://github.com/kmu-bigdata/dos.git
+RUN git remote add -f origin https://github.com/kmu-bigdata/dos.git
 
 # Set the folder to be cloned
-echo /microservice >> .git/info/sparse-checkout
-echo /dos/model >> .git/info/sparse-checkout
-echo /dos/scaler >> .git/info/sparse-checkout
+RUN echo /microservice >> .git/info/sparse-checkout
+RUN echo /dos/model >> .git/info/sparse-checkout
+RUN echo /dos/scaler >> .git/info/sparse-checkout
 
 # Clone
-git pull origin main
+RUN git pull origin main
 
 # Install packages
 RUN pip install -r microservice/requirements.txt
