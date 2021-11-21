@@ -35,28 +35,28 @@ cd dos
 pip install -r requirements.txt
 ```
 
-### 4. Data Generation
+### Data Generation
 
 ```bash
 cd data-generation
 ./data-generation.sh
 ```
 
-### 5. DoS Train
+### DoS Train
 
 ```bash
 cd dos
 python train.py
 ```
 
-### 6. DoS Test
+### DoS Test
 
 ```bash
 cd dos
 python test.py
 ```
 
-### 7. DoS Inference
+### DoS Inference
 
 ```bash
 cd dos
