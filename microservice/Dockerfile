@@ -21,6 +21,8 @@ git remote add -f origin https://github.com/kmu-bigdata/dos.git
 
 # Set the folder to be cloned
 echo /microservice >> .git/info/sparse-checkout
+echo /dos/model >> .git/info/sparse-checkout
+echo /dos/scaler >> .git/info/sparse-checkout
 
 # Clone
 git pull origin main
