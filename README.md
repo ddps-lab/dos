@@ -4,9 +4,9 @@
 
 <br><br>
 
-## How to use data-generation and dos on Tensorflow Container
+## How to use data-generation and dos
 
-### 1. Install Docker
+### 1. Install Docker on Amazon EC2(Ubuntu)
 
 ```bash
 sudo apt-get update -y
@@ -65,9 +65,9 @@ python inference.py
 
 <br><br>
 
-## How to build spark-3.1.2 on Amazon emr-6.4.0
+## How to build spark-3.1.2
 
-### 1. Setting
+### 1. Setting on Amazon emr-6.4.0
 
 ```bash
 sudo yum update -y
@@ -96,9 +96,9 @@ spark-shell
 
 <br><br>
 
-## How to use Microservice
+## How to create Microservice using AWS
 
-### 1. Setting
+### 1. Setting on Amazon EC2(Ubuntu)
 
 ```bash
 sudo apt-get update -y
@@ -126,10 +126,10 @@ docker build -t microservice-image .
 
 ### 4. Upload Container Image to Amazon ECR
 
-### 5. Create a Lambda Function based on Amazon ECR Container Image
+### 5. Create a AWS Lambda based on Amazon ECR Container Image
 
 ### 6. Write a Lambda function that recommends an optimal multiplication method based on matrix multiplication information
 
 - dos/microservice/lambda_function.py
 
-### 7. Create API GATEWAY and connect Lambda Function trigger
+### 7. Create Amazon API Gateway and connect AWS Lambda trigger
