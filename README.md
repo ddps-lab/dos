@@ -98,7 +98,7 @@ spark-shell
 
 ## How to create Microservice using AWS
 
-### 1. Setting on Amazon EC2(Ubuntu)
+### 1. Setting on Amazon EC2(Ubuntu, t2.medium, 20GB)
 
 ```
 sudo apt-get update -y
