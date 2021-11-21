@@ -6,7 +6,7 @@
 
 ## How to use data-generation and dos
 
-### 1. Install Docker on Amazon EC2(Ubuntu)
+### 1. Install Docker on Amazon EC2(Ubuntu, t2.medium, 20GB)
 
 ```
 sudo apt-get update -y
