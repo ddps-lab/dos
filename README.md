@@ -8,7 +8,7 @@
 
 ### 1. Install Docker on Amazon EC2(Ubuntu)
 
-```bash
+```
 sudo apt-get update -y
 sudo apt-get remove docker docker-engine docker.io
 sudo apt-get install docker.io -y
@@ -19,14 +19,14 @@ sudo usermod -a -G docker ubuntu
 
 ### 2. Run Docker
 
-```bash
-sudo docker pull tensorflow/tensorflow:2.2.0
-sudo docker run -it tensorflow/tensorflow:2.2.0 bash
+```
+sudo docker pull tensorflow/tensorflow:2.5.0
+sudo docker run -it tensorflow/tensorflow:2.5.0 bash
 ```
 
 ### 3. Setting
 
-```bash
+```
 apt-get update -y
 apt-get install git -y
 cd home
@@ -37,28 +37,28 @@ pip install -r requirements.txt
 
 ### Data Generation
 
-```bash
+```
 cd data-generation
 ./data-generation.sh
 ```
 
 ### DoS Train
 
-```bash
+```
 cd dos
 python train.py
 ```
 
 ### DoS Test
 
-```bash
+```
 cd dos
 python test.py
 ```
 
 ### DoS Inference
 
-```bash
+```
 cd dos
 python inference.py
 ```
@@ -69,7 +69,7 @@ python inference.py
 
 ### 1. Setting on Amazon emr-6.4.0
 
-```bash
+```
 sudo yum update -y
 sudo yum install git -y
 cd /home/hadoop
@@ -78,19 +78,19 @@ git clone https://github.com/kmu-bigdata/dos.git
 
 ### 2. Build
 
-```bash
+```
 cd dos/spark-3.1.2 && ./build/mvn -pl :spark-mllib_2.12 -DskipTests clean install
 ```
 
 ### 3. Change the existing mllib package of Amazon EMR
 
-```bash
+```
 sudo mv /home/hadoop/dos/spark-3.1.2/mllib/target/spark-mllib_2.12-3.1.2.jar /usr/lib/spark/jars/spark-mllib_2.12-3.1.2-amzn-0.jar
 ```
 
 ### 4. Run Spark
 
-```bash
+```
 spark-shell
 ```
 
@@ -100,7 +100,7 @@ spark-shell
 
 ### 1. Setting on Amazon EC2(Ubuntu)
 
-```bash
+```
 sudo apt-get update -y
 sudo apt-get install git -y
 git clone https://github.com/kmu-bigdata/dos.git
@@ -108,7 +108,7 @@ git clone https://github.com/kmu-bigdata/dos.git
 
 ### 2. Install Docker
 
-```bash
+```
 sudo apt-get update -y
 sudo apt-get remove docker docker-engine docker.io
 sudo apt-get install docker.io -y
@@ -119,7 +119,7 @@ sudo usermod -a -G docker ubuntu
 
 ### 3. Build Container Image using Dockerfile
 
-```bash
+```
 cd dos/microservice
 docker build -t microservice-image .
 ```
