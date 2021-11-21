@@ -121,10 +121,20 @@ sudo usermod -a -G docker ubuntu
 
 ```
 cd dos/microservice
-docker build -t microservice-image .
+docker build -t "image-name" .
 ```
 
 ### 4. Upload Container Image to Amazon ECR
+
+```
+aws configure
+export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account)
+echo "export ACCOUNT_ID=${ACCOUNT_ID}" | tee -a ~/.bash_profile
+
+docker tag "image-name" $ACCOUNT_ID.dkr.ecr."region-name".amazonaws.com/"ecr-name"
+aws ecr get-login-password --region "region-name" | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr."region-name".amazonaws.com
+docker push $ACCOUNT_ID.dkr.ecr."region-name".amazonaws.com/"ecr-name"
+```
 
 ### 5. Create a AWS Lambda based on Amazon ECR Container Image
 
