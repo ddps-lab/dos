@@ -49,21 +49,21 @@ cd data-generation
 
 ```
 cd dos
-python train.py
+python3 train.py
 ```
 
 ### 6. Test Dos
 
 ```
 cd dos
-python test.py
+python3 test.py
 ```
 
 ### 7. Inference Dos
 
 ```
 cd dos
-python inference.py
+python3 inference.py
 ```
 
 <br><br>
