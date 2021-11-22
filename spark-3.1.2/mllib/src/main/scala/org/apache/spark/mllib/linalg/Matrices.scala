@@ -142,7 +142,7 @@ sealed trait Matrix extends Serializable {
       require(lc == rr, s"The columns of leftmatrix don't match the rows of rightmatrix. A: $lc, B: $rr")
       
       // Define api url of microservce
-      val api_url = ""
+      val api_url = "https://6cjwk2mxp3.execute-api.ap-northeast-1.amazonaws.com/unho-microservice-stage/unho-microservice-resource"
       
       // Define matrix info
       val matrix_info : Map[String,org.json4s.JsonAST.JValue] = Map("lr"->lr, "lc"->lc, "rc"->rc, "ld"->ld, "rd"->rd, "lnnz"->lnnz, "rnnz"->rnnz)
