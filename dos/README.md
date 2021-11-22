@@ -1,8 +1,8 @@
-### ./model
+### ./model/
 
 - trained model
 
-### ./scaler
+### ./scaler/
 
 - trained scaler
 
