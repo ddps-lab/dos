@@ -59,4 +59,4 @@ def train_and_save_dnn_models():
 # Execute train and save dnn models
 train_and_save_dnn_models()
 
-Print("Successfully execute train set save dnn models")
+print("Successfully execute train set save dnn models")
