@@ -24,5 +24,6 @@ setwd("../data/")
 # Save result matrix as csv
 write.csv(output$design, file="train-set.csv", row.names=FALSE)
 
+print("print train rows")
 # Row of result matrix
 output$rows
