@@ -94,6 +94,19 @@ sudo mv /home/hadoop/dos/spark-3.1.2/mllib/target/spark-mllib_2.12-3.1.2.jar /us
 spark-shell
 ```
 
+### 5. Sample Code
+
+```
+import org.apache.spark.mllib.linalg.SparseMatrix
+import java.util.Random;
+
+val l_sm = SparseMatrix.sprand(10,20,0.001,new Random(24))
+val r_sm = SparseMatrix.sprand(20,10,0.005,new Random(24))
+
+l_sm.multiply(r_sm)
+```
+
+
 <br><br>
 
 ## How to create Microservice using AWS
