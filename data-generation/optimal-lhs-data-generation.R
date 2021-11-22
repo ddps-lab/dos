@@ -1,7 +1,7 @@
 #!/usr/bin/env Rscript
 
 # If AlgDesign is not installed, install it using the command below
-# install.packages("AlgDesign")
+install.packages("AlgDesign")
 
 library(AlgDesign)
 
