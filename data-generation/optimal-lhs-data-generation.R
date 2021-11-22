@@ -23,6 +23,3 @@ setwd("../data/")
 
 # Save result matrix as csv
 write.csv(output$design, file="optimal-lhs-data.csv", row.names=FALSE)
-
-# Row of result matrix
-print("Optimal lhs data generation complete.")
