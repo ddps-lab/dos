@@ -96,15 +96,44 @@ spark-shell
 
 ### 5. Simple Matrix Multiplication Code
 
-```
-import org.apache.spark.mllib.linalg.SparseMatrix
-import java.util.Random;
-
-val l_sm = SparseMatrix.sprand(10,20,0.001,new Random(24))
-val r_sm = SparseMatrix.sprand(20,10,0.005,new Random(24))
-
-l_sm.multiply(r_sm)
-```
+- SparseMatrix Multiplication
+    
+    ```
+    import org.apache.spark.mllib.linalg.SparseMatrix
+    import java.util.Random;
+    
+    val NumRow_L = 2
+    val NumCol_L = 3
+    val NumCol_R = 3
+    val D_L = 0.001
+    val D_R = 0.005
+    
+    val l_sm = SparseMatrix.sprand(NumRow_L, NumCol_L, D_L, new Random(24))
+    val r_sm = SparseMatrix.sprand(NumCol_L, NumCol_R, D_R, new Random(24))
+    
+    l_sm.multiply(r_sm)
+    ```
+    
+- BlockMatrix Multiplication
+    
+    ```
+    import org.apache.spark.mllib.linalg.distributed.{CoordinateMatrix, MatrixEntry}
+    
+    val NumRow_L = 2
+    val NumCol_L = 3
+    val NumCol_R = 3
+    val BlockRow_L = 1
+    val BlockCol_L = 1
+    val BlockCol_R = 1
+    
+    val l_entries = sc.parallelize(Seq((0, 0, 1.0), (1, 1, 2.0), (0, 2, 3.0), (1, 2, 4.0))).map{case (i, j, v) => MatrixEntry(i, j, v)}
+    val l_block_matrix = new CoordinateMatrix(l_entries, NumRow_L, NumCol_L).toBlockMatrix(BlockRow_L, BlockCol_L).cache
+    
+    val r_entries = sc.parallelize(Seq((1, 0, 5.0), (2, 0, 6.0), (0, 1, 7.0), (2, 1, 8.0), (1, 2, 9.0))).map{case (i, j, v) => MatrixEntry(i, j, v)}
+    val r_block_matrix = new CoordinateMatrix(r_entries, NumCol_L, NumCol_R).toBlockMatrix(BlockCol_L, BlockCol_R).cache
+    
+    l_block_matrix.multiply(r_block_matrix).validate
+    ```
 
 <br><br>
 
