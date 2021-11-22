@@ -6,7 +6,7 @@
 
 ## How to use data-generation and dos
 
-### 1. Install Docker on Amazon EC2(Ubuntu, t2.medium, 20GB)
+### 1. Install Docker on Amazon EC2(Ubuntu18.04, t2.medium, 20GB)
 
 ```
 sudo apt-get update -y
@@ -141,7 +141,7 @@ spark-shell
 
 ## How to create Microservice using AWS
 
-### 1. Setting on Amazon EC2(Ubuntu, t2.medium, 20GB)
+### 1. Setting on Amazon EC2(Ubuntu18.04, t2.medium, 20GB)
 
 ```
 sudo apt-get update -y
