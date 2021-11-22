@@ -32,7 +32,7 @@ apt-get install git -y
 cd home
 git clone https://github.com/kmu-bigdata/dos.git
 cd dos
-pip install -r dos/requirements.txt
+pip install -r requirements.txt
 ```
 
 ### 4. Data Generation
