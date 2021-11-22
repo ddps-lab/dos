@@ -63,7 +63,7 @@ python3 test.py
 
 ```
 cd dos
-python3 inference.py
+python3 inference.py --nr_l 126899 --nc_l 52210 --nc_r 12948 --d_l 0.00182521 --d_r 0.07 --nnz_l 12092788 --nnz_r 47322584
 ```
 
 <br><br>
