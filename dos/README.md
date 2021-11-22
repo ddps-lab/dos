@@ -1,19 +1,19 @@
-### ./model/
+### model/
 
 - trained model
 
-### ./scaler/
+### scaler/
 
 - trained scaler
 
-### ./train.py
+### train.py
 
 - Train model using ../data/train-set.csv
 
-### ./test.py
+### test.py
 
 - Test model using ../data/test-set.csv
 
-### ./inference.py
+### inference.py
 
 - Returns the optimal multiplication method with matrix multiplication information
