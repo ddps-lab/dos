@@ -19,7 +19,7 @@ input = read.csv("../data/raw-lhs-data/raw-lhs-data.csv")
 output = optFederov(data=input, nTrials=1300, nRepeats=5,criterion = "D")
 
 # Change work directory
-setwd("../data/optimal-lhs-data")
+setwd("../data/")
 
 # Save result matrix as csv
 write.csv(output$design, file="optimal-lhs-data.csv", row.names=FALSE)
