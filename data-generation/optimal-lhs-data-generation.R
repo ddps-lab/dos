@@ -9,7 +9,7 @@ library(AlgDesign)
 options(max.print=1000000)
 
 # Source data to optimize
-input = read.csv("../data/raw-lhs-data/raw-lhs-data.csv")
+input = read.csv("../data/raw-lhs-data.csv")
 
 # Data optimization using DOE
 # data: input data
