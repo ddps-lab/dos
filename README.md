@@ -41,7 +41,7 @@ pip install -r requirements.txt
 ```
 cd data-generation
 ./generate-and-optimize-lhs-data.sh
-# SPMM
+# SPMM based on /data/optimal-lhs-data.csv
 ./generate-trainset-testset.sh
 ```
 
