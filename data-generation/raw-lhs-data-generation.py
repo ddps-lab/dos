@@ -70,4 +70,3 @@ preprocessed_lhs_df = lhs_filtering(lhs_df)
 
 # Save preprocessed lhs dataframe
 preprocessed_lhs_df.to_csv('../data/raw-lhs-data.csv',index=False)
-print("Raw LHS data generation complete.")
