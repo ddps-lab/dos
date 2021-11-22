@@ -1,4 +1,4 @@
-# Let It Sparse : train and save prediction model
+# Dense Or Sparse : train and save prediction model
 
 # Load python packages
 # 1. Basic data processing packages
