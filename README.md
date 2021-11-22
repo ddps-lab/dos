@@ -35,28 +35,30 @@ cd dos/dos/
 pip install -r requirements.txt
 ```
 
-### Data Generation
+### 4. Data Generation
 
 ```
 cd data-generation
-./data-generation.sh
+./generate-and-optimize-lhs-data.sh
+SPMM
+./generate-trainset-testset.sh
 ```
 
-### DoS Train
+### 5. Train Dos
 
 ```
 cd dos
 python train.py
 ```
 
-### DoS Test
+### 6. Test Dos
 
 ```
 cd dos
 python test.py
 ```
 
-### DoS Inference
+### 7. Inference Dos
 
 ```
 cd dos
