@@ -29,6 +29,7 @@ sudo docker run -it tensorflow/tensorflow:2.5.0 bash
 ```
 apt-get update
 apt-get install git -y
+DEBIAN_FRONTEND=noninteractive apt-get install r-base -y
 cd home
 git clone https://github.com/kmu-bigdata/dos.git
 cd dos
