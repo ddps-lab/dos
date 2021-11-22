@@ -42,12 +42,12 @@ def handler(event, context):
     else:
         optim_method = "smsm"
     
-		# Generate result
+    # Generate result
     result = "sm*sm : " + str(smsm_dnn_result[0]) + " , " + \
 		"sm*dm : " + str(smdm_dnn_result[0]) + " , " + \
 		"optim_method : " + optim_method
 
-		# Return result
+    # Return result
     return {
         'statusCode': 200,
         'body': json.dumps(result)
