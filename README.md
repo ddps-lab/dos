@@ -9,7 +9,7 @@
 ### 1. Install Docker on Amazon EC2(Ubuntu18.04, t2.medium, 20GB)
 
 ```
-sudo apt-get update -y
+sudo apt-get update
 sudo apt-get remove docker docker-engine docker.io
 sudo apt-get install docker.io -y
 sudo service docker start
@@ -27,7 +27,7 @@ sudo docker run -it tensorflow/tensorflow:2.5.0 bash
 ### 3. Setting
 
 ```
-apt-get update -y
+apt-get update
 apt-get install git -y
 cd home
 git clone https://github.com/kmu-bigdata/dos.git
@@ -72,7 +72,7 @@ python inference.py
 ### 1. Setting on Amazon emr-6.4.0
 
 ```
-sudo yum update -y
+sudo yum update
 sudo yum install git -y
 cd /home/hadoop
 git clone https://github.com/kmu-bigdata/dos.git
@@ -144,7 +144,7 @@ spark-shell
 ### 1. Setting on Amazon EC2(Ubuntu18.04, t2.medium, 20GB)
 
 ```
-sudo apt-get update -y
+sudo apt-get update
 sudo apt-get install git -y
 git clone https://github.com/kmu-bigdata/dos.git
 ```
@@ -152,7 +152,7 @@ git clone https://github.com/kmu-bigdata/dos.git
 ### 2. Install Docker
 
 ```
-sudo apt-get update -y
+sudo apt-get update
 sudo apt-get remove docker docker-engine docker.io
 sudo apt-get install docker.io -y
 sudo service docker start
