@@ -6,7 +6,7 @@ import sys
 import re
 
 # Total dataset
-dataset = pd.read_csv("../data/spmm-data/spmm-data.csv")
+dataset = pd.read_csv("../data/spmm-data.csv")
 
 # Row number of train set extracted with DOE
 train_set = []
@@ -26,6 +26,6 @@ for line in sys.stdin:
 test_set = dataset.drop(index=train_set, axis=0)
 
 # Save test set
-test_set.to_csv("../data/datasets/test-set.csv",index=False)
+test_set.to_csv("../data/test-set.csv",index=False)
 
 print("Data generation complete.")
