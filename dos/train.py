@@ -13,7 +13,7 @@ import tensorflow as tf
 from pathlib import Path
 
 # Load dataset
-train = pd.read_csv('../data/datasets/train-set.csv')
+train = pd.read_csv('../data/train-set.csv')
 
 # Feature and Target settings
 X_train = train[['lr','lc','rc','ld','rd','lnnz','rnnz']] 
@@ -37,8 +37,8 @@ def build_dnn_model(input_shape):
     model.compile(optimizer=tf.keras.optimizers.Adagrad(learning_rate=0.07), loss='mape')
     return model
 
-# Train and Save models
-def train_and_save_dnn_model():
+# Train and Save dnn models
+def train_and_save_dnn_models():
 
     # Train model
     smsm_dnn_model = build_dnn_model((X_train.shape[1],))
@@ -56,5 +56,7 @@ def train_and_save_dnn_model():
     smdm_dnn_model.save("./model/smdm_dnn_model")
     pickle.dump(minmax_scaler, open('./scaler/minmax_scaler.pkl', 'wb'))
 
-    
-train_and_save_dnn_model()
+# Execute train and save dnn models
+train_and_save_dnn_models()
+
+Print("Successfully execute train set save dnn models")
