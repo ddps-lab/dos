@@ -34,5 +34,3 @@ test_set = dataset.drop(index=train_set, axis=0)
 
 # Save test set
 test_set.to_csv("../data/test-set.csv",index=False)
-
-print("Successfully generate trainset and testset")
