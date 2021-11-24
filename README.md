@@ -50,21 +50,19 @@ cd data-generation
 ### 5. Train Dos
 
 ```
-cd dos
+cd ../dos
 python3 train.py
 ```
 
 ### 6. Test Dos
 
 ```
-cd dos
 python3 test.py
 ```
 
 ### 7. Inference Dos
 
 ```
-cd dos
 python3 inference.py --nr_l 126899 --nc_l 52210 --nc_r 12948 --d_l 0.00182521 --d_r 0.07 --nnz_l 12092788 --nnz_r 47322584
 ```
 
