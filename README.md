@@ -70,6 +70,56 @@ python3 inference.py --nr_l 126899 --nc_l 52210 --nc_r 12948 --d_l 0.00182521 --
 
 <br><br>
 
+## How to create Microservice using AWS
+
+### 1. Setting on Amazon EC2(Ubuntu18.04, t2.medium, 20GB)
+
+```
+sudo apt-get update
+sudo apt-get install git -y
+git clone https://github.com/kmu-bigdata/dos.git
+```
+
+### 2. Install Docker
+
+```
+sudo apt-get update
+sudo apt-get remove docker docker-engine docker.io
+sudo apt-get install docker.io -y
+sudo service docker start
+sudo chmod 666 /var/run/docker.sock
+sudo usermod -a -G docker ubuntu
+```
+
+### 3. Build Container Image using Dockerfile
+
+```
+cd dos/microservice
+docker build -t "image-name" .
+```
+
+### 4. Upload Container Image to Amazon ECR
+
+```
+aws configure
+export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account)
+echo "export ACCOUNT_ID=${ACCOUNT_ID}" | tee -a ~/.bash_profile
+
+docker tag "image-name" $ACCOUNT_ID.dkr.ecr."region-name".amazonaws.com/"ecr-name"
+aws ecr get-login-password --region "region-name" | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr."region-name".amazonaws.com
+docker push $ACCOUNT_ID.dkr.ecr."region-name".amazonaws.com/"ecr-name"
+```
+
+### 5. Create a AWS Lambda based on Amazon ECR Container Image
+
+### 6. Write a Lambda function that recommends an optimal multiplication method based on matrix multiplication information
+
+- dos/microservice/lambda_function.py
+
+### 7. Create Amazon API Gateway and connect AWS Lambda trigger
+
+<br><br>
+
 ## How to build spark-3.1.2
 
 ### 1. Setting on Amazon emr-6.4.0
@@ -139,53 +189,3 @@ spark-shell
     
     l_block_matrix.multiply(r_block_matrix).validate
     ```
-
-<br><br>
-
-## How to create Microservice using AWS
-
-### 1. Setting on Amazon EC2(Ubuntu18.04, t2.medium, 20GB)
-
-```
-sudo apt-get update
-sudo apt-get install git -y
-git clone https://github.com/kmu-bigdata/dos.git
-```
-
-### 2. Install Docker
-
-```
-sudo apt-get update
-sudo apt-get remove docker docker-engine docker.io
-sudo apt-get install docker.io -y
-sudo service docker start
-sudo chmod 666 /var/run/docker.sock
-sudo usermod -a -G docker ubuntu
-```
-
-### 3. Build Container Image using Dockerfile
-
-```
-cd dos/microservice
-docker build -t "image-name" .
-```
-
-### 4. Upload Container Image to Amazon ECR
-
-```
-aws configure
-export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account)
-echo "export ACCOUNT_ID=${ACCOUNT_ID}" | tee -a ~/.bash_profile
-
-docker tag "image-name" $ACCOUNT_ID.dkr.ecr."region-name".amazonaws.com/"ecr-name"
-aws ecr get-login-password --region "region-name" | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr."region-name".amazonaws.com
-docker push $ACCOUNT_ID.dkr.ecr."region-name".amazonaws.com/"ecr-name"
-```
-
-### 5. Create a AWS Lambda based on Amazon ECR Container Image
-
-### 6. Write a Lambda function that recommends an optimal multiplication method based on matrix multiplication information
-
-- dos/microservice/lambda_function.py
-
-### 7. Create Amazon API Gateway and connect AWS Lambda trigger
