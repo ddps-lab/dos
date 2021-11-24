@@ -1,10 +1,10 @@
 # dos
 
-- Dense or Sparse : Optimal SPMM-as-a-Service for Big-Data Processing
+Dense or Sparse : Optimal SPMM-as-a-Service for Big-Data Processing
 
 [Demo Page]()
 
-<br><br>
+<br>
 
 ## How to use data-generation and dos
 
