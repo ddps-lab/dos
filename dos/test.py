@@ -42,12 +42,14 @@ def test_models():
 	smdm_dnn_y_pred = smdm_dnn_model.predict(X_test).reshape(-1,)
 	
 	# Sparse X Sparse prediction model performance
-	print(f'Sparse X Sparse prediction MAPE : {mean_absolute_percentage_error(smsm_y_test, smsm_dnn_y_pred)}')
-	print(f'Sparse X Sparse prediction RMSE : {math.sqrt(mean_squared_error(smsm_y_test, smsm_dnn_y_pred))}\n')
+	print('Sparse X Sparse prediction model')
+	print(f'MAPE : {mean_absolute_percentage_error(smsm_y_test, smsm_dnn_y_pred)}')      
+	print(f'RMSE : {math.sqrt(mean_squared_error(smsm_y_test, smsm_dnn_y_pred))}\n')
 	
 	# Sparse X Dense prediction model performance
-	print(f'Sparse X Dense prediction MAPE : {mean_absolute_percentage_error(smdm_y_test, smdm_dnn_y_pred)}')
-	print(f'Sparse X Dense prediction RMSE : {math.sqrt(mean_squared_error(smdm_y_test, smdm_dnn_y_pred))}')
+	print('Sparse X Dense prediction model')
+	print(f'MAPE : {mean_absolute_percentage_error(smdm_y_test, smdm_dnn_y_pred)}')      
+	print(f'RMSE : {math.sqrt(mean_squared_error(smdm_y_test, smdm_dnn_y_pred))}\n')
 
 # Execute test models
 test_models()
