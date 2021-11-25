@@ -59,9 +59,9 @@ def inference(nr_l, nc_l, nc_r, d_l, d_r, nnz_l, nnz_r):
 	    optim_method = "sm*sm"
 	
 	# Generate result
-	result = "sm*sm latency : " + str(int(smsm_dnn_result[0])) + "ms , " + \
-	"sm*dm latency : " + str(int(smdm_dnn_result[0])) + "ms , " + \
-	"optim_method : " + optim_method
+	result = "Sparse X Sparse Latency : " + str(int(smsm_dnn_result[0])) + "ms , " + \
+	"Sparse X Dense Latency : " + str(int(smdm_dnn_result[0])) + "ms , " + \
+	"Optimal Method : " + optim_method
 
 	print(result)
 
