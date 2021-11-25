@@ -134,7 +134,7 @@ git clone https://github.com/kmu-bigdata/dos.git
 cd dos/spark-3.1.2 && ./build/mvn -pl :spark-mllib_2.12 -DskipTests clean install
 ```
 
-### 3. Change the existing mllib package of Amazon EMR
+### 3. Replace existing MLLib jar file in Amazon EMR with new build jar file
 
 ```
 sudo mv /home/hadoop/dos/spark-3.1.2/mllib/target/spark-mllib_2.12-3.1.2.jar /usr/lib/spark/jars/spark-mllib_2.12-3.1.2-amzn-0.jar
