@@ -8,12 +8,12 @@
 
 ### train.py
 
-- Train model using ../data/train-set.csv
+- Train the model using ../data/train-set.csv
 
 ### test.py
 
-- Test model using ../data/test-set.csv
+- Test the model using ../data/test-set.csv
 
 ### inference.py
 
-- Returns the optimal multiplication method with matrix multiplication information
+- Returns the latency according to the SPMM method, and returns the optimal SPMM method.
