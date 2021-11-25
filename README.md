@@ -146,7 +146,7 @@ sudo mv /home/hadoop/dos/spark-3.1.2/mllib/target/spark-mllib_2.12-3.1.2.jar /us
 spark-shell
 ```
 
-### 5. Simple Matrix Multiplication Code
+### 5. Simple way to use DOS
 
 - SparseMatrix Multiplication
     
