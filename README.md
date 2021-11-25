@@ -81,7 +81,6 @@ git clone https://github.com/kmu-bigdata/dos.git
 ### 2. Install Docker
 
 ```
-sudo apt-get update
 sudo apt-get remove docker docker-engine docker.io
 sudo apt-get install docker.io -y
 sudo service docker start
