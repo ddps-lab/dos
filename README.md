@@ -119,7 +119,7 @@ docker push $ACCOUNT_ID.dkr.ecr."region-name".amazonaws.com/"ecr-name"
 
 ## How to build spark-3.1.2
 
-### 1. Setting on Amazon emr-6.4.0
+### 1. Setting on Amazon EMR-6.4.0
 
 ```
 sudo yum update
