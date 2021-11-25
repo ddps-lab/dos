@@ -53,10 +53,10 @@ def inference(nr_l, nc_l, nc_r, d_l, d_r, nnz_l, nnz_r):
 	
 	# If sm*dm is better than sm*sm
 	if (smdm_dnn_result[0] <= smsm_dnn_result[0]):
-	    optim_method = "sm*dm"
+	    optim_method = "Sparse X Dense"
 	# If sm*sm is better than sm*dm
 	else:
-	    optim_method = "sm*sm"
+	    optim_method = "Sparse X Sparse"
 	
 	# Generate result
 	result = "Sparse X Sparse Latency : " + str(int(smsm_dnn_result[0])) + "ms , " + \
