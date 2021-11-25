@@ -19,7 +19,7 @@ sudo chmod 666 /var/run/docker.sock
 sudo usermod -a -G docker ubuntu
 ```
 
-### 2. Run Docker
+### 2. Run Container
 
 ```
 sudo docker pull tensorflow/tensorflow:2.5.0
@@ -47,20 +47,20 @@ cd data-generation
 ./generate-trainset-testset.sh
 ```
 
-### 5. Train Dos
+### 5. Train DOS
 
 ```
 cd ../dos
 python3 train.py
 ```
 
-### 6. Test Dos
+### 6. Test DOS
 
 ```
 python3 test.py
 ```
 
-### 7. Inference Dos
+### 7. Inference DOS
 
 ```
 python3 inference.py --nr_l 126899 --nc_l 52210 --nc_r 12948 --d_l 0.00182521 --d_r 0.07 --nnz_l 12092788 --nnz_r 47322584
