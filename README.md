@@ -63,7 +63,7 @@ python3 test.py
 ### 7. Inference DOS
 
 ```
-python3 inference.py --nr_l 126899 --nc_l 52210 --nc_r 12948 --d_l 0.00182521 --d_r 0.07 --nnz_l 12092788 --nnz_r 47322584
+python3 inference.py --nr_l 10000 --nc_l 60000 --nc_r 20000 --d_l 0.0001 --d_r 0.03 --nnz_l 60000 --nnz_r 36000000
 ```
 
 <br><br>
