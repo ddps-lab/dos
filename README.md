@@ -11,7 +11,7 @@ Dense or Sparse : Optimal SPMM-as-a-Service for Big-Data Processing
 ### 1. Install Docker on Amazon EC2(Ubuntu18.04, t2.medium, 20GB)
 
 ```
-sudo apt-get update
+sudo apt-get update -y
 sudo apt-get remove docker docker-engine docker.io
 sudo apt-get install docker.io -y
 sudo service docker start
@@ -29,7 +29,7 @@ sudo docker run -it tensorflow/tensorflow:2.5.0 bash
 ### 3. Setting
 
 ```
-apt-get update
+apt-get update -y
 apt-get install git -y
 DEBIAN_FRONTEND=noninteractive apt-get install r-base -y
 cd home
@@ -73,7 +73,7 @@ python3 inference.py --nr_l 10000 --nc_l 60000 --nc_r 20000 --d_l 0.0001 --d_r 0
 ### 1. Setting on Amazon EC2(Ubuntu18.04, t2.medium, 20GB)
 
 ```
-sudo apt-get update
+sudo apt-get update -y
 sudo apt-get install git -y
 git clone https://github.com/kmu-bigdata/dos.git
 ```
@@ -122,7 +122,7 @@ docker push $ACCOUNT_ID.dkr.ecr."region-name".amazonaws.com/"ecr-name"
 ### 1. Setting on Amazon EMR-6.4.0
 
 ```
-sudo yum update
+sudo yum update -y
 sudo yum install git -y
 cd /home/hadoop
 git clone https://github.com/kmu-bigdata/dos.git
