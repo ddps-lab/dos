@@ -96,7 +96,9 @@ cd dos/microservice
 docker build -t "image-name" .
 ```
 
-### 4. Upload Container Image to Amazon ECR
+### 4. Create Amazon ECR Repository
+
+### 5. Upload Container Image to Amazon ECR
 
 ```
 aws configure
@@ -109,13 +111,13 @@ aws ecr get-login-password --region "region-name" | docker login --username AWS 
 docker push $ACCOUNT_ID.dkr.ecr."region-name".amazonaws.com/"ecr-name"
 ```
 
-### 5. Create a AWS Lambda based on Amazon ECR Container Image
+### 6. Create a AWS Lambda based on Amazon ECR Container Image
 
-### 6. Write a Lambda function that recommends an optimal multiplication method based on matrix multiplication information
+### 7. Write a Lambda function that recommends an optimal multiplication method based on matrix multiplication information
 
 - dos/microservice/lambda_function.py
 
-### 7. Create Amazon API Gateway and connect AWS Lambda trigger
+### 8. Create Amazon API Gateway and connect AWS Lambda trigger
 
 <br><br>
 
