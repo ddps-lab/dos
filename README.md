@@ -75,6 +75,7 @@ python3 inference.py --nr_l 10000 --nc_l 60000 --nc_r 20000 --d_l 0.0001 --d_r 0
 ```
 sudo apt-get update -y
 sudo apt-get install git -y
+sudo apt-get install awscli -y
 git clone https://github.com/kmu-bigdata/dos.git
 ```
 
