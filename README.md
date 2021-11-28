@@ -100,6 +100,7 @@ docker build -t "image-name" .
 
 ```
 aws configure
+
 export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account)
 echo "export ACCOUNT_ID=${ACCOUNT_ID}" | tee -a ~/.bash_profile
 
