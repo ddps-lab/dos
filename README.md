@@ -98,6 +98,8 @@ docker build -t "image-name" .
 
 ### 4. Create Amazon ECR Repository
 
+- Create Amazon ECR Repository to store container images.
+
 ### 5. Upload Container Image to Amazon ECR
 
 ```
@@ -113,11 +115,18 @@ docker push $ACCOUNT_ID.dkr.ecr."region-name".amazonaws.com/"ecr-name"
 
 ### 6. Create a AWS Lambda based on Amazon ECR Container Image
 
+- The container image in Amazon ECR is specified as the runtime environment of the AWS Lambda function.
+- When configuring the Lambda, set the memory to 512 MB and the timeout to 1 minute.
+
 ### 7. Write a Lambda function that recommends an optimal multiplication method based on matrix multiplication information
 
-- dos/microservice/lambda_function.py
+- The Lambda function predicts and transmits the optimal SPMM method according to the matrix multiplication arguments using the Sparse X Sparse Latency prediction model and the Sparse X Dense Latency prediction model.
+- Lambda functions can be written based on dos/microservice/lambda_function.py.
 
 ### 8. Create Amazon API Gateway and connect AWS Lambda trigger
+
+- The AWS Lambda function receives a matrix multiplication argument from Amazon API Gateway.
+- After that, the optimal SPMM method according to the matrix multiplication argument is sent back to Amazon API Gateway.
 
 <br><br>
 
