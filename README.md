@@ -47,20 +47,20 @@ cd data-generation
 ./generate-trainset-testset.sh
 ```
 
-### 5. Train DOS
+### 5. Train DoS
 
 ```
 cd ../dos
 python3 train.py
 ```
 
-### 6. Test DOS
+### 6. Test DoS
 
 ```
 python3 test.py
 ```
 
-### 7. Inference DOS
+### 7. Inference DoS
 
 ```
 python3 inference.py --nr_l 10000 --nc_l 60000 --nc_r 20000 --d_l 0.0001 --d_r 0.03 --nnz_l 60000 --nnz_r 36000000
@@ -159,7 +159,7 @@ sudo mv /home/hadoop/dos/spark-3.1.2/mllib/target/spark-mllib_2.12-3.1.2.jar /us
 spark-shell
 ```
 
-### 5. Simple way to use DOS
+### 5. Simple way to use DoS
 
 - SparseMatrix Multiplication
     
