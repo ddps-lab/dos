@@ -1,4 +1,4 @@
-# dos
+# DoS
 
 Dense or Sparse : Optimal SPMM-as-a-Service for Big-Data Processing
 
@@ -6,7 +6,7 @@ Dense or Sparse : Optimal SPMM-as-a-Service for Big-Data Processing
 
 <br>
 
-## How to use data-generation and dos
+## How to use data-generation and DoS
 
 ### 1. Install Docker on Amazon EC2(Ubuntu18.04, t2.medium, 20GB)
 
