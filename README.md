@@ -2,6 +2,8 @@
 
 Dense or Sparse : Optimal SPMM-as-a-Service for Big-Data Processing
 
+[Paper](https://ddps-publications.s3.ap-northeast-1.amazonaws.com/dos-tbd.pdf)
+<br>
 [Demo Page](http://dos.ddps.cloud/)
 
 <br>
